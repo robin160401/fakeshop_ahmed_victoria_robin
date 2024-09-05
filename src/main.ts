@@ -31,7 +31,6 @@ function printProduct(product: IProduct){
   (cardContainer.querySelector("#img") as HTMLImageElement).src = product.image;
   (cardContainer.querySelector("#productName") as HTMLElement).textContent = product.title;
   (cardContainer.querySelector("#price") as HTMLElement).textContent = product.price.toString();
-  cardContainer.querySelector("#rating") as HTMLElement.textContent = product.rating.rate.toString();
   cardContainer.setAttribute("class", "delete");
   productsContainer.appendChild(cardContainer);
 }
@@ -71,3 +70,89 @@ function clearItemCards() {
   const itemCard = document.querySelectorAll(".delete");
   itemCard.forEach(itemCard => itemCard.remove());
 }
+
+filterElectronicsButton.addEventListener("click", ()=> {
+  clearItemCards();
+  fetch("https://fakestoreapi.com/products")
+  .then((response: Response) => {
+    if(!response.ok){
+      throw new Error("Failed to fetch Data");
+    }
+    return response.json();
+  })
+  .then((data: IProduct[]) => {
+    const filteredByCategories: IProduct[] = data.filter((product: IProduct) => product.category === "electronics");
+    filteredByCategories.forEach((product: IProduct) => {
+      printProduct(product);
+    })
+  })
+})
+
+filterJewelerysButton.addEventListener("click", ()=> {
+  clearItemCards();
+  fetch("https://fakestoreapi.com/products")
+  .then((response: Response) => {
+    if(!response.ok){
+      throw new Error("Failed to fetch Data");
+    }
+    return response.json();
+  })
+  .then((data: IProduct[]) => {
+    const filteredByCategories: IProduct[] = data.filter((product: IProduct) => product.category === "jewelery");
+    filteredByCategories.forEach((product: IProduct) => {
+      printProduct(product);
+    })
+  })
+})
+
+filterMensButton.addEventListener("click", ()=> {
+  clearItemCards();
+  fetch("https://fakestoreapi.com/products")
+  .then((response: Response) => {
+    if(!response.ok){
+      throw new Error("Failed to fetch Data");
+    }
+    return response.json();
+  })
+  .then((data: IProduct[]) => {
+    const filteredByCategories: IProduct[] = data.filter((product: IProduct) => product.category === "men's clothing");
+    filteredByCategories.forEach((product: IProduct) => {
+      printProduct(product);
+    })
+  })
+})
+
+filterWomensButton.addEventListener("click", ()=> {
+  clearItemCards();
+  fetch("https://fakestoreapi.com/products")
+  .then((response: Response) => {
+    if(!response.ok){
+      throw new Error("Failed to fetch Data");
+    }
+    return response.json();
+  })
+  .then((data: IProduct[]) => {
+    const filteredByCategories: IProduct[] = data.filter((product: IProduct) => product.category === "women's clothing");
+    filteredByCategories.forEach((product: IProduct) => {
+      printProduct(product);
+    })
+  })
+})
+
+titleInput.addEventListener("change", ()=> {
+  clearItemCards();
+  fetch("https://fakestoreapi.com/products")
+  .then((response: Response) => {
+    if(!response.ok){
+      throw new Error("Failed to fetch Data");
+    }
+    return response.json();
+  })
+  .then((data: IProduct[]) => {
+    data.forEach((product: IProduct) => {
+      if (product.title.includes(titleInput.value)){
+        printProduct(product);
+      }
+    })
+  })
+})
