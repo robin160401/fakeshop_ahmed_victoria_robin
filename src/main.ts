@@ -11,6 +11,7 @@ fetchAndDisplayAll();
 console.log("Welcome");
 
 function fetchAndDisplayAll(){
+  clearItemCards();
   fetch("https://fakestoreapi.com/products")
   .then((response: Response) => {
     if(!response.ok){
