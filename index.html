@@ -3,11 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <script type="module" src="src/main.ts" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Thrift Shop</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <h1>Thrift Shop</h1>
+    <section>
+      <input id="itemTitle" type="text">
+      <select name="" id="sortBy">
+        <option value="0">Sort By</option>
+        <option value="1">lowest Price</option>
+        <option value="2">highest Price</option>
+        <option value="3">best Rating</option>
+      </select>
+      <div class="filterCategories">
+        <p>Filter by Categories:</p>
+        <button id="electronics">electronics</button>
+        <button id="jewelery">jewelery</button>
+        <button id="mens">men's clothing</button>
+        <button id="womens">women's clothing</button>
+      </div>
+    </section>
+
+    <section id="itemsSection">
+      <div id="itemContainer">
+        <img id="img" src="" alt="">
+        <h2 id="productName"></h2>
+        <div class="priceCard">
+          <h3 id="price"></h3>
+          <button id="addToCart">Add to cart</button>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
