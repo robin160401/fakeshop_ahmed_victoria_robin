@@ -1,24 +1,35 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import IProduct from "./interfaces/IProduct";
+const titleInput = document.getElementById("itemTitle") as HTMLInputElement;
+const sortByButton = document.getElementById("sortBy") as HTMLButtonElement;
+const filterElectronicsButton = document.getElementById("electronics") as HTMLButtonElement;
+const filterJewelerysButton = document.getElementById("jewelery") as HTMLButtonElement;
+const filterMensButton = document.getElementById("mens") as HTMLButtonElement;
+const filterWomensButton = document.getElementById("womens") as HTMLButtonElement;
+const productsContainer = document.getElementById("itemsSection") as HTMLDivElement;
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+fetchAndDisplay();
+console.log("Welcome");
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+function fetchAndDisplay(){
+  fetch("https://fakestoreapi.com/products")
+  .then((response: Response) => {
+    if(!response.ok){
+      throw new Error("Failed to fetch Data");
+    }
+    return response.json();
+  })
+  .then((data: IProduct[]) => {
+      data.forEach((product: IProduct) => {
+        console.log(product.image)
+        const cardContainer = document.querySelector("#itemContainer")!.cloneNode(true) as HTMLElement;
+
+        (cardContainer.querySelector("#img") as HTMLImageElement).src = product.image;
+
+        (cardContainer.querySelector("#productName") as HTMLElement).textContent = product.title;
+
+        (cardContainer.querySelector("#price") as HTMLElement).textContent = product.price.toString();
+
+        productsContainer.appendChild(cardContainer);
+      })
+  })
+}
