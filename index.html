@@ -1,38 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <script type="module" src="src/main.ts" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Thrift Shop</title>
   </head>
   <body>
-    <h1>Thrift Shop</h1>
-    <section>
-      <input id="itemTitle" type="text">
-      <select name="" id="sortBy">
-        <option value="0">Sort By</option>
-        <option value="1">lowest Price</option>
-        <option value="2">highest Price</option>
-        <option value="3">best Rating</option>
-      </select>
-      <div class="filterCategories">
+    <h1 class="text-center text-red-400 text-4xl">Thrift Shop</h1>
+    <section class="border border-red-500 bg-red-400 flex flex-col">
+      <div class="text-center p-4">
+        <input
+          class="p-1 rounded-md"
+          id="itemTitle"
+          type="text"
+          placeholder="Search by title"
+        />
+        <select class="p-1 rounded-md" name="" id="sortBy">
+          <option value="0">Sort By</option>
+          <option value="1">lowest Price</option>
+          <option value="2">highest Price</option>
+          <option value="3">best Rating</option>
+        </select>
+      </div>
+      <div class="filterCategories text-white flex justify-around p-2">
         <p>Filter by Categories:</p>
-        <button id="electronics">electronics</button>
-        <button id="jewelery">jewelery</button>
-        <button id="mens">men's clothing</button>
-        <button id="womens">women's clothing</button>
+        <button class="border border-white p-1 rounded-sm" id="electronics">
+          electronics
+        </button>
+        <button class="border border-white p-1 rounded-sm" id="jewelery">
+          jewelery
+        </button>
+        <button class="border border-white p-1 rounded-sm" id="mens">
+          men's clothing
+        </button>
+        <button class="border border-white p-1 rounded-sm" id="womens">
+          women's clothing
+        </button>
       </div>
     </section>
 
-    <section id="itemsSection">
-      <div id="itemContainer">
-        <img id="img" src="" alt="">
-        <h2 id="productName"></h2>
-        <div class="priceCard">
-          <h3 id="price"></h3>
-          <button id="addToCart">Add to cart</button>
+    <section class="flex flex-wrap justify-center p-4 gap-4" id="itemsSection">
+      <div
+        class="flex flex-col justify-center items-center border border-red-400 w-[450px] h-[600px]"
+        id="itemContainer"
+      >
+        <img class="w-[300px] h-[400px] object-cover" id="img" src="" alt="" />
+        <h2 class="text-2xl" id="productName"></h2>
+        <div class="priceCard flex items-center gap-4">
+          <h3 class="text-green-500 text-2xl" id="price"></h3>
+          <button class="bg-red-400 p-2 rounded-md text-white" id="addToCart">
+            Add to cart
+          </button>
         </div>
       </div>
     </section>
